@@ -34,7 +34,7 @@ angular.module('aleChimp', ['ionic',
     $stateProvider.state('tab', {
         url: "/tab",
         abstract: true,
-        templateUrl: "/views/_partials/tabs.html",
+        templateUrl: "views/partials/tabs.html",
         controller: 'TabController'
     });
 

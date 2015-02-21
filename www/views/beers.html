@@ -1,9 +1,12 @@
 <ion-view view-title="Beers">
     <ion-content class="background-style">
 
-        <h1>Sam Adams</h1>
-        <h1>Coors Light</h1>
-        <h1>Sculpin IPA</h1>
+        <div ng-repeat="beer in beers">
+            <div class="beer-cards card-size">
+                <div class="beer-name">{{beer.name}}</div>
+                <div class="beer-style">{{beer.style}}</div>
+            </div>
+        </div>
 
     </ion-content>
 </ion-view>
