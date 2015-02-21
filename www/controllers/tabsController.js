@@ -1,5 +1,5 @@
 angular.module('TabController', [])
 
-.controller('TabController', ['$scope', function($scope) {
-
+.controller('TabController', ['$scope', '$timeout', function($scope, $timeout) {
+        
 }]);

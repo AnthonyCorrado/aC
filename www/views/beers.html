@@ -1,8 +1,8 @@
 <ion-view view-title="Beers">
-    <ion-content class="background-style">
+    <ion-content has-bouncing="true" class="background-style">
 
         <div ng-repeat="beer in beers">
-            <div class="beer-cards card-size">
+            <div class="beer-cards card-size {{floatedLeft}}">
                 <div class="beer-name">{{beer.name}}</div>
                 <div class="beer-style">{{beer.style}}</div>
             </div>

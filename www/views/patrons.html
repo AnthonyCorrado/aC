@@ -1,7 +1,11 @@
 <ion-view view-title="Patrons">
-    <ion-content class="background-style">
+    <ion-content has-bouncing="true" class="background-style">
 
-        <h2>Patron index</h2>
+        <div ng-repeat="patron in patrons">
+            <div class="patron-cards patron-card-size {{floatedLeft}}">
+                <div class="beer-name">{{patron.fname}}</div>
+            </div>
+        </div>
 
     </ion-content>
 </ion-view>

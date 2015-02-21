@@ -7016,8 +7016,6 @@ a.button {
   transition-duration: 0s; }
 
 .background-style {
-  background-color: steelblue;
-  background: url(../img/beeropong4.jpg);
   background-repeat: no-repeat;
   background-size: cover; }
 
@@ -7035,7 +7033,6 @@ a.button {
 .beer-cards {
   background-color: rgba(150, 150, 150, 0.8) !important;
   display: inline-block;
-  float: left;
   height: 100px;
   margin-left: 10%;
   margin-top: 5%;
@@ -7064,3 +7061,33 @@ a.button {
       width: 20%;
       margin: 4% 0 0 4%;
       height: 200px; } }
+
+.patron-cards {
+  background-color: rgba(150, 150, 150, 0.8) !important;
+  display: inline-block;
+  height: 50px;
+  margin-left: 10%;
+  margin-top: 5%;
+  -webkit-box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.5) ;
+  -moz-box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.5) ;
+  box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.5) ; }
+
+.patron-card-size {
+  width: 80%; }
+  @media (min-width: 360px) {
+    .patron-card-size {
+      width: 80%;
+      height: 100px; } }
+  @media (min-width: 520px) {
+    .patron-card-size {
+      width: 41%;
+      margin: 6% 0 0 6%;
+      height: 120px; } }
+  @media (min-width: 800px) {
+    .patron-card-size {
+      width: 20%;
+      margin: 4% 0 0 4%;
+      height: 100px; } }
+
+.floated-left {
+  float: left; }

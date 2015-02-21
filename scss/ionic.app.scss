@@ -50,8 +50,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // --------------------------------------------------
 
 .background-style {
-    background-color: steelblue;
-    background: url(../img/beeropong4.jpg);
+    // background-color: steelblue;
+    // background: url(../img/beeropong4.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -69,11 +69,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.75);
 }
 
-// beer view stylings -------------------------------
+// beers index view stylings -------------------------------
 .beer-cards {
     background-color: rgba(150, 150, 150, 0.8) !important;
     display: inline-block;
-    float: left;
     height: 100px;
     margin-left: 10%;
     margin-top: 5%;
@@ -92,4 +91,25 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   @include breakpoint(small) { width: 80%; height: 200px; }
   @include breakpoint(medium) { width: 41%; margin: 6% 0 0 6%; height: 220px; }
   @include breakpoint(large) { width: 20%; margin: 4% 0 0 4%; height: 200px; }
+}
+
+// patrons index view stylings ------------------------------
+.patron-cards {
+    background-color: rgba(150, 150, 150, 0.8) !important;
+    display: inline-block;
+    height: 50px;
+    margin-left: 10%;
+    margin-top: 5%;
+    @include box-shadow(7px, 7px, 4px, rgba(0, 0, 0, 0.5));
+    
+}
+.patron-card-size {
+  width: 80%;
+  @include breakpoint(small) { width: 80%; height: 100px; }
+  @include breakpoint(medium) { width: 41%; margin: 6% 0 0 6%; height: 120px; }
+  @include breakpoint(large) { width: 20%; margin: 4% 0 0 4%; height: 100px; }
+}
+
+.floated-left {
+    float: left;
 }

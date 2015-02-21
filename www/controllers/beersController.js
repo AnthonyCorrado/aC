@@ -1,6 +1,6 @@
 angular.module('BeerController', [])
 
-.controller('BeerController', ['$scope', function($scope) {
+.controller('BeerController', ['$scope', '$timeout', function($scope, $timeout) {
 
     $scope.beers = [
         {
@@ -37,5 +37,9 @@ angular.module('BeerController', [])
         },
 
     ];
+
+    $timeout(function() {
+        $scope.floatedLeft = "floated-left";
+    }, 100);
 
 }]);
