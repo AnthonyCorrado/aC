@@ -15,6 +15,9 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+// customer color variables -------------------------
+$dark:                            #000 !default;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -50,10 +53,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // --------------------------------------------------
 
 .background-style {
-    // background-color: steelblue;
-    // background: url(../img/beeropong4.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: rgba(0,0,0,0.7);
+    background: url(https://s3.amazonaws.com/uploads.hipchat.com/39979/747064/4jbUdXRdCS7Ihlm/luxbar2%20copy.jpg);
+    background-repeat: repeat-y;
+    background-size: 100%;
 }
 
 .tabs-top > .tabs, .tabs.tabs-top {
@@ -70,14 +73,38 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 // beers index view stylings -------------------------------
+.beer-image {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+}
+
 .beer-cards {
-    background-color: rgba(150, 150, 150, 0.8) !important;
+    background-color: rgba(110, 110, 110, 0.8) !important;
+    border: 1px solid white;
+    border-radius: 0 50px 50px 0;
+    color: white;
     display: inline-block;
     height: 100px;
     margin-left: 10%;
     margin-top: 5%;
-    @include box-shadow(7px, 7px, 4px, rgba(0, 0, 0, 0.5));
-    
+    @include box-shadow(7px, 7px, 4px, rgba(0, 0, 0, 0.7));  
+
+    img {
+      float: right;
+    } 
+}
+
+.beer-name {
+  width: 100%;
+  font-family: 'Indie Flower', cursive;
+  font-size: 2em;
+}
+
+.main-info-wrap {
+  display: inline-block;
+  width: 65%;
+  padding: 10px 5px 0 5px;
 }
 
 *,
@@ -88,14 +115,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .card-size {
   width: 80%;
-  @include breakpoint(small) { width: 80%; height: 200px; }
+  @include breakpoint(small) { width: 80%; height: 100px; }
   @include breakpoint(medium) { width: 41%; margin: 6% 0 0 6%; height: 220px; }
   @include breakpoint(large) { width: 20%; margin: 4% 0 0 4%; height: 200px; }
 }
 
 // patrons index view stylings ------------------------------
 .patron-cards {
-    background-color: rgba(150, 150, 150, 0.8) !important;
+    background-color: rgba(110, 110, 110, 0.8) !important;
+    border: 1px solid white;
+    color: white;
     display: inline-block;
     height: 50px;
     margin-left: 10%;
@@ -112,4 +141,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .floated-left {
     float: left;
+}
+.icon {
+  color: rgba(190, 190, 190, 1);
+  text-shadow: 2px 2px 0px rgba(150, 150, 150, 0.7);
 }

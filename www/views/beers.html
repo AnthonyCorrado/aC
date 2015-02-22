@@ -3,8 +3,11 @@
 
         <div ng-repeat="beer in beers">
             <div class="beer-cards card-size {{floatedLeft}}">
-                <div class="beer-name">{{beer.name}}</div>
-                <div class="beer-style">{{beer.style}}</div>
+                <div class="main-info-wrap">
+                    <div class="beer-name">{{beer.name}}</div>
+                    <!-- <div class="beer-style">{{beer.style}}</div> -->
+                </div>
+                <img ng-src="{{beer.image}}" class="beer-image" />
             </div>
         </div>
 
