@@ -1,7 +1,18 @@
-<ion-view view-title="Home">
-    <ion-content class="background-style">
+<ion-view view-title="Home  ">
+    <ion-content has-bouncing="true" class="background-style">
 
-        <h1>hello wahooooooos!</h1>
+        <div class="patron-cards patron-card-size {{floatedLeft}}"
+            ng-click="addPatron()">
+            <div class="item-name">Add Patron</div>
+        </div>
+
+        <div class="patron-cards patron-card-size {{floatedLeft}}">
+            <div class="item-name">Add Beer</div>
+        </div>
+
+        <div class="patron-cards patron-card-size {{floatedLeft}}">
+            <div class="item-name">Create Notification</div>
+        </div>
 
     </ion-content>
 </ion-view>

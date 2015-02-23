@@ -1,7 +1,12 @@
 <ion-view view-title="Notifications">
     <ion-content class="background-style">
 
-        <h1>This is the notifications page</h1>
+        <div ng-repeat="notification in notifications">
+            <div class="patron-cards patron-card-size {{floatedLeft}}">
+                <div class="item-name">{{notification.time}}</div>
+                <div class="item-name">{{notification.beer}}</div>
+            </div>
+        </div>
         
     </ion-content>
 </ion-view>

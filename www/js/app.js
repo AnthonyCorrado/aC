@@ -11,7 +11,8 @@ angular.module('aleChimp', ['ionic',
     'BeerController',
     'PatronController',
     'NotificationController',
-    'SettingController'
+    'SettingController',
+    'UserController'
 ])
 
 .run(function($ionicPlatform) {
