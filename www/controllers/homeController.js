@@ -1,6 +1,6 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$scope', '$firebase', function($scope, $firebase) {
+.controller('HomeController', ['$scope', '$firebase', '$ionicModal', function($scope, $firebase, $ionicModal) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var sync = $firebase(baseRef);
 
@@ -10,6 +10,62 @@ angular.module('HomeController', [])
         }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
         });
+
+    $scope.addPatron = function() {
+
+        $scope.hideMenu = true;
+        $ionicModal.fromTemplateUrl('views/partials/patrons-form.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        });
+    };
+
+    $scope.addBeer = function() {
+
+        $scope.hideMenu = true;
+        $ionicModal.fromTemplateUrl('views/partials/beers-form.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        });
+    };
+
+    $scope.createNotification = function() {
+
+        $scope.hideMenu = true;
+        $ionicModal.fromTemplateUrl('views/partials/notifications-form.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        });
+    };
+
+
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+        $scope.hideMenu = false;
+    });
+      // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+        $scope.hideMenu = false;
+        // Execute action
+    });
+      // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+        $scope.hideMenu = false;
+        // Execute action
+    });
 
     // baseRef.child('bars').set([
     //     {

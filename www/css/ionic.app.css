@@ -7119,3 +7119,29 @@ a.button {
 .icon {
   color: #bebebe;
   text-shadow: 2px 2px 0px rgba(150, 150, 150, 0.7); }
+
+.form-container {
+  width: 80%;
+  height: 400px;
+  background-color: red; }
+
+.modal {
+  width: 80%;
+  min-height: 400px;
+  margin-left: 10%;
+  background-color: rgba(110, 110, 110, 0.8) !important;
+  border: 1px solid white;
+  color: white;
+  -webkit-box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.5) ;
+  -moz-box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.5) ;
+  box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.5) ;
+  border-radius: 20px;
+  font-family: 'Indie Flower', cursive; }
+
+.bar {
+  background-color: #000; }
+
+.form-heading {
+  color: white;
+  margin: 0 auto;
+  font-size: 1.5em; }
