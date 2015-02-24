@@ -7127,8 +7127,9 @@ a.button {
 
 .modal {
   width: 80%;
-  min-height: 400px;
+  min-height: 350px;
   margin-left: 10%;
+  margin-top: 20%;
   background-color: rgba(110, 110, 110, 0.8) !important;
   border: 1px solid white;
   color: white;
@@ -7145,3 +7146,25 @@ a.button {
   color: white;
   margin: 0 auto;
   font-size: 1.5em; }
+
+.modal-form input {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.3em; }
+.modal-form .input-label {
+  color: rgba(255, 255, 255, 0.9); }
+.modal-form .check-text {
+  color: rgba(0, 0, 0, 0.9);
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.3em; }
+.modal-form ::-webkit-input-placeholder {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.2em; }
+.modal-form :-moz-placeholder {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.2em; }
+.modal-form ::-moz-placeholder {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.2em; }
+.modal-form :-ms-input-placeholder {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.2em; }

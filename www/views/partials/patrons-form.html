@@ -5,7 +5,40 @@
     </ion-header-bar>
 
     <ion-content>
-        Hello!
-    </ion-content>
+    <div class="list modal-form">
+        
+        <label class="item item-input">
+            <input type="text" placeholder="First Name" ng-model="customer.fname">
+        </label>
+        <label class="item item-input">
+            <input type="text" placeholder="Last Name" ng-model="customer.lname">
+        </label>
+        <div class="check-text">
+            <label class="checkbox">
+                <input type="checkbox" ng-model="customer.receiveEmail">
+            </label>
+            Email Notification?
+        </div>
+
+        <label class="item item-input">
+            <input type="text" placeholder="Email" ng-model="customer.email">
+        </label>
+
+        <div class="check-text">
+            <label class="checkbox">
+                <input type="checkbox" ng-model="customer.receiveText">
+            </label>
+            Text Notification?
+            {{ customer.receiveText}}
+        </div>
+
+        <label class="item item-input">
+            <input type="text" placeholder="Phone" ng-model="customer.phone">
+        </label>
+
+        <button ng-click="createPatron(customer)">Create Patron</button>
+
+    </div>
+</ion-content>
 
 </ion-modal-view>

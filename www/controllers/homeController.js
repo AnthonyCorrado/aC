@@ -1,8 +1,33 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$scope', '$firebase', '$ionicModal', function($scope, $firebase, $ionicModal) {
+.controller('HomeController', ['$scope', '$firebase', '$ionicModal', 'BeerImageService', function($scope, $firebase, $ionicModal, BeerImageService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
+    var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1");
     var sync = $firebase(baseRef);
+
+    $scope.customer = {
+        "fname": "",
+        "lname": "",
+        "receiveEmail": false,
+        "email": "",
+        "receiveText": false,
+        "phone": ""
+    };
+
+    $scope.drink = {
+        "name": "",
+        "brewery": "",
+        "style": "",
+        "comment": "",
+        "breweryLocation": "",
+        "image": ""
+    };
+
+    $scope.notify = {
+        "beer": "",
+        "message": ""
+    };
+
 
     baseRef.on("value", function(snapshot) {
           console.log(snapshot.val().beers);
@@ -35,7 +60,7 @@ angular.module('HomeController', [])
         });
     };
 
-    $scope.createNotification = function() {
+    $scope.addNotification = function() {
 
         $scope.hideMenu = true;
         $ionicModal.fromTemplateUrl('views/partials/notifications-form.html', {
@@ -46,7 +71,6 @@ angular.module('HomeController', [])
             $scope.modal.show();
         });
     };
-
 
     $scope.closeModal = function() {
         $scope.modal.hide();
@@ -66,6 +90,27 @@ angular.module('HomeController', [])
         $scope.hideMenu = false;
         // Execute action
     });
+
+    $scope.createPatron = function(customer) {
+        console.log(customer);
+        barBase.child('patrons').push(customer);
+    };
+
+    $scope.createBeer = function(drink) {
+        console.log(drink.style);
+        console.log(BeerImageService.getImage(drink.style));
+        drink.image = BeerImageService.getImage(drink.style);
+        console.log(drink);
+        barBase.child('beers').push(drink);
+    };
+
+    $scope.createNotification = function(notify) {
+        console.log(notify);
+        barBase.child('notifications').push(notify);
+    };
+
+
+
 
     // baseRef.child('bars').set([
     //     {

@@ -50,6 +50,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     -moz-box-shadow:$top $left $blur $color #{$inset};
     box-shadow:$top $left $blur $color #{$inset};
 }
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
 // --------------------------------------------------
 
 .background-style {
@@ -155,8 +162,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 .modal {
   width: 80%;
-  min-height: 400px;
+  min-height: 350px;
   margin-left: 10%;
+  margin-top: 20%;
   background-color: rgba(110, 110, 110, 0.8) !important;
   border: 1px solid white;
   color: white;
@@ -171,5 +179,27 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   color: white;
   margin: 0 auto;
   font-size: 1.5em;
+}
+.modal-form {
 
+  input {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.3em;
+  }
+
+  .input-label {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .check-text {
+    color: rgba(0, 0, 0, 0.9);
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.3em;
+
+  }
+
+  @include placeholder {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.2em;
+  }
 }
