@@ -3,6 +3,7 @@ angular.module('HomeController', [])
 .controller('HomeController', ['$scope', '$firebase', '$ionicModal', 'BeerImageService', function($scope, $firebase, $ionicModal, BeerImageService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1");
+    var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
     var sync = $firebase(baseRef);
 
     $scope.customer = {
@@ -25,13 +26,16 @@ angular.module('HomeController', [])
 
     $scope.notify = {
         "beer": "",
-        "message": ""
+        "comment": "",
+        "time": "",
+        "patrons": ""
+
     };
 
-
-    baseRef.on("value", function(snapshot) {
-          console.log(snapshot.val().beers);
-          $scope.beers = snapshot.val().beers;
+    beerBase.on("value", function(snapshot) {
+          var data = snapshot.val();
+          console.log(data);
+          $scope.beers = snapshot.val();
         }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
         });
@@ -91,6 +95,7 @@ angular.module('HomeController', [])
         // Execute action
     });
 
+    // ------------ forms functions for adding new items ----------------
     $scope.createPatron = function(customer) {
         console.log(customer);
         barBase.child('patrons').push(customer);
@@ -105,34 +110,14 @@ angular.module('HomeController', [])
     };
 
     $scope.createNotification = function(notify) {
+        var d = new Date();
+        var n = d.getTime();
+        notify.time = n;
         console.log(notify);
         barBase.child('notifications').push(notify);
+
     };
 
 
-
-
-    // baseRef.child('bars').set([
-    //     {
-    //         "bar_name": "Monkey's",
-    //         "street": "1234 Hello World Ave",
-    //         "city": "Santa Monica",
-    //         "state": "California",
-    //         "zip": "90401",
-    //         "email": "support@monkeys.com",
-    //         "phone": "6515555555",
-    //         "password": "3249uaf09349348439402pilj4i"
-    //     },
-    //     {
-    //         "bar_name": "Princess Pub & Grille",
-    //         "street": "1665 India St",
-    //         "city": "San Diego",
-    //         "state": "California",
-    //         "zip": "92101",
-    //         "email": "support@princesspub.com",
-    //         "phone": "6197023021",
-    //         "password": "3249uaf09349348439402piljdf"
-    //     }
-    // ]);
 
 }]);

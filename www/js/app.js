@@ -10,6 +10,7 @@ angular.module('aleChimp', ['ionic',
     'HomeController',
     'BeerController',
     'PatronController',
+    'PatronDetailController',
     'NotificationController',
     'SettingController',
     'UserController',
@@ -66,6 +67,16 @@ angular.module('aleChimp', ['ionic',
           'tab-patrons': {
             templateUrl: 'views/patrons.html',
             controller: 'PatronController'
+          }
+        }
+    });
+
+    $stateProvider.state('tab.patrons-show', {
+        url: '/patrons/:patronId',
+        views: {
+          'tab-patrons': {
+            templateUrl: 'views/patron-show.html',
+            controller: 'PatronDetailController'
           }
         }
     });

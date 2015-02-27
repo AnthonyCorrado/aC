@@ -4,8 +4,25 @@
         <div class="form-heading">Create Notification</div>
     </ion-header-bar>
 
-    <ion-content>
-        Hello!
-    </ion-content>
+        <ion-content>
+
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Beer
+                    </div>
+
+                    <select ng-model="notify.beer">
+                            <option ng-repeat="beer in beers">{{beer.name}}</option>
+                    </select>
+                </label>
+
+                <label class="item item-input">
+                    <input type="textarea" placeholder="Comment" ng-model="notify.comment">
+                </label>
+
+                <button ng-click="createNotification(notify)">Create Notification</button>
+
+
+        </ion-content>
 
 </ion-modal-view>

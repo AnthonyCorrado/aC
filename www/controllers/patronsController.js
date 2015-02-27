@@ -6,42 +6,13 @@ angular.module('PatronController', [])
 
     baseRef.child('bars/1/patrons').on("value", function(snapshot) {
           console.log(snapshot.val());
-          $scope.patrons = snapshot.val();
+          $timeout(function() {
+            console.log(snapshot.val());
+            $scope.patrons = snapshot.val();
+        },200);
         }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
-        });
-
-    // baseRef.child('bars/1/patrons').push(
-    //     {
-    //         "fname": "anthony",
-    //         "lname": "corrado",
-    //         "emailNotif": "true",
-    //         "textNotif": "true",
-    //         "email": "anthonymcorrado@gmail.com",
-    //         "phone": "651-555-5555"
-    //     }
-    // );
-    // baseRef.child('bars/1/patrons').push(
-    //     {
-    //         "fname": "carla",
-    //         "lname": "silvia",
-    //         "emailNotif": "true",
-    //         "textNotif": "true",
-    //         "email": "carlasilvia@gmail.com",
-    //         "phone": "949-555-5555"
-    //     }
-    // );
-    // baseRef.child('bars/1/patrons').push(
-    //     {
-    //         "fname": "lionel",
-    //         "lname": "richie",
-    //         "emailNotif": "true",
-    //         "textNotif": "false",
-    //         "email": "hello@gmail.com",
-    //         "phone": null
-    //     }
-    // );
-
+    });
 
     $timeout(function() {
         $scope.floatedLeft = "floated-left";

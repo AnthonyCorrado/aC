@@ -5,27 +5,27 @@
     </ion-header-bar>
 
         <ion-content>
-    <div class="list modal-form">
-        
-        <label class="item item-input">
-            <input type="text" placeholder="Name" ng-model="drink.name">
-        </label>
-        <label class="item item-input">
-            <input type="text" placeholder="Brewery" ng-model="drink.brewery">
-        </label>
-        <label class="item item-input">
-            <input type="text" placeholder="Style" ng-model="drink.style">
-        </label>
-        <label class="item item-input">
-            <input type="textarea" placeholder="Comment" ng-model="drink.comment">
-        </label>
-        <label class="item item-input">
-            <input type="text" placeholder="Brewery Location" ng-model="drink.breweryLocation">
-        </label>
 
-        <button ng-click="createBeer(drink)">Create Beer</button>
+            <div class="list modal-form">            
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" ng-model="drink.name">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Brewery" ng-model="drink.brewery">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Style" ng-model="drink.style">
+                </label>
+                <label class="item item-input">
+                    <input type="textarea" placeholder="Comment" ng-model="drink.comment">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Brewery Location" ng-model="drink.breweryLocation">
+                </label>
 
-    </div>
+                <button ng-click="createBeer(drink)">Create Beer</button>
+            </div>
+            
 </ion-content>
 
 </ion-modal-view>

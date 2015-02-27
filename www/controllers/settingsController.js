@@ -1,5 +1,4 @@
 angular.module('SettingController', [])
 
-.controller('SettingController', ['$scope', function($scope) {
-
-}]);
+.controller('SettingController', function($scope) {
+});

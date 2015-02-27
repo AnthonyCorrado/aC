@@ -1,0 +1,23 @@
+<ion-view view-title="Patrons">
+    <ion-content has-bouncing="true" class="background-style" ng-controller="UserController">
+
+        <div class="patron-details-container">
+
+            <div class="patron-pers-info">
+                {{thisPatron.textNotif}}
+                <div class="item-name">{{thisPatron.fname}} {{thisPatron.lname}}</div>
+                <div class="item-name">Email Notifications?
+                    <span ng-show="thisPatron.receiveEmail">yes</span><span ng-hide="thisPatron.receiveEmail">no</span>
+                </div>
+                <div class="item-name">Text Notifications?
+                    <span ng-show="thisPatron.receiveText">yes</span><span ng-hide="thisPatron.receiveText">no</span>
+                </div>
+            </div>
+
+            <div class="patron-beer-info">
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>
