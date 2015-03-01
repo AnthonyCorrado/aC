@@ -36,6 +36,36 @@
             <input type="text" placeholder="Phone" ng-model="customer.phone">
         </label>
 
+        <label class="item item-input item-select">
+                <div class="input-label">
+                       <div class="custom-form-text">Beer</div>
+                </div>
+
+                <select ng-model="customer.beers.beer1">
+                    <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
+                </select>
+        </label>
+
+        <label ng-if="customer.beers.beer1.length > 0" class="item item-input item-select">
+                <div class="input-label">
+                       <div class="custom-form-text">Beer</div>
+                </div>
+
+                <select ng-model="customer.beers.beer2">
+                    <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
+                </select>
+        </label>
+
+        <label ng-if="customer.beers.beer2.length > 0" class="item item-input item-select">
+                <div class="input-label">
+                       <div class="custom-form-text">Beer</div>
+                </div>
+
+                <select ng-model="customer.beers.beer3">
+                    <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
+                </select>
+        </label>
+
         <button ng-click="createPatron(customer)">Create Patron</button>
 
     </div>

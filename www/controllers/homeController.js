@@ -1,6 +1,6 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$scope', '$firebase', '$ionicModal', 'BeerImageService', function($scope, $firebase, $ionicModal, BeerImageService) {
+.controller('HomeController', ['$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeersPatronIndexService', 'DatabaseService', function($scope, $firebase, $ionicModal, BeerImageService, BeersPatronIndexService, DatabaseService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1");
     var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
@@ -12,7 +12,8 @@ angular.module('HomeController', [])
         "receiveEmail": false,
         "email": "",
         "receiveText": false,
-        "phone": ""
+        "phone": "",
+        "beers": []
     };
 
     $scope.drink = {
@@ -21,7 +22,8 @@ angular.module('HomeController', [])
         "style": "",
         "comment": "",
         "breweryLocation": "",
-        "image": ""
+        "image": "",
+        "patrons": []
     };
 
     $scope.notify = {
@@ -97,27 +99,17 @@ angular.module('HomeController', [])
 
     // ------------ forms functions for adding new items ----------------
     $scope.createPatron = function(customer) {
-        console.log(customer);
-        barBase.child('patrons').push(customer);
+        customer.beers = [customer.beers.beer1 || null, customer.beers.beer2 || null, customer.beers.beer3 || null];
+        // BeersPatronIndexService.setPatronToBeer(customer);
+        DatabaseService.createPatron(customer);
     };
 
     $scope.createBeer = function(drink) {
-        console.log(drink.style);
-        console.log(BeerImageService.getImage(drink.style));
-        drink.image = BeerImageService.getImage(drink.style);
-        console.log(drink);
-        barBase.child('beers').push(drink);
+        DatabaseService.createBeer(drink);
     };
 
     $scope.createNotification = function(notify) {
-        var d = new Date();
-        var n = d.getTime();
-        notify.time = n;
-        console.log(notify);
-        barBase.child('notifications').push(notify);
-
+        DatabaseService.createNotification(notify);
     };
-
-
 
 }]);

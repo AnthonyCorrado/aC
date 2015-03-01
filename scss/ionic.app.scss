@@ -59,6 +59,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 // --------------------------------------------------
 
+// custom attributes --------------------------------
+.custom-form-text {
+    color: #111;
+    font-size: 1.3em;
+}
+
 .background-style {
     background-color: rgba(0,0,0,0.7);
     background: url(https://s3.amazonaws.com/uploads.hipchat.com/39979/747064/4jbUdXRdCS7Ihlm/luxbar2%20copy.jpg);
@@ -198,10 +204,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background-color: red;
 }
 .modal {
-  width: 80%;
-  min-height: 350px;
-  margin-left: 10%;
-  margin-top: 20%;
+  width: 100%;
   background-color: rgba(110, 110, 110, 0.8) !important;
   border: 1px solid white;
   color: white;
