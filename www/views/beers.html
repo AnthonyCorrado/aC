@@ -1,13 +1,13 @@
 <ion-view view-title="Beers">
     <ion-content has-bouncing="true" class="background-style">
-        <div ng-repeat="beer in beers">
-            <div class="beer-cards card-size {{floatedLeft}}">
+        <div ng-repeat="(name, beer) in beers">
+            <a href="#/tab/beers/{{name}}"><div class="beer-cards card-size {{floatedLeft}}">
                 <div class="main-info-wrap">
                     <div class="item-name">{{beer.name}}</div>
                     <!-- <div class="beer-style">{{beer.style}}</div> -->
                 </div>
                 <img ng-src="{{beer.image}}" class="beer-image" />
-            </div>
+            </div></a>
         </div>
 
     </ion-content>

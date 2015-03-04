@@ -1,6 +1,6 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeersPatronIndexService', 'DatabaseService', function($scope, $firebase, $ionicModal, BeerImageService, BeersPatronIndexService, DatabaseService) {
+.controller('HomeController', ['$scope', '$firebase', '$ionicModal', 'BeerImageService', 'DatabaseService', function($scope, $firebase, $ionicModal, BeerImageService, DatabaseService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1");
     var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
@@ -100,7 +100,6 @@ angular.module('HomeController', [])
     // ------------ forms functions for adding new items ----------------
     $scope.createPatron = function(customer) {
         customer.beers = [customer.beers.beer1 || null, customer.beers.beer2 || null, customer.beers.beer3 || null];
-        // BeersPatronIndexService.setPatronToBeer(customer);
         DatabaseService.createPatron(customer);
     };
 

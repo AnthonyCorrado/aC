@@ -1,0 +1,20 @@
+<ion-view view-title="Beer">
+    <ion-content has-bouncing="true" class="background-style">
+
+        <div class="beer-show-container">
+            <div class="beer-title">{{thisBeer.name}}</div>
+            <div class="beer-info-wrap">
+                <div class="beer-info">
+                    <div class="">{{thisBeer.style}}</div>
+                    <div class="">{{thisBeer.brewery}}</div>
+                    <div class="">{{thisBeer.breweryLocation}}</div>
+                    <div class="">{{thisBeer.comment}}</div>
+                </div>
+                <div class="beer-icon">
+                    <img ng-src="{{thisBeer.image}}" class="beer-image" />
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

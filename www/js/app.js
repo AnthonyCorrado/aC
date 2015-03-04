@@ -9,13 +9,13 @@ angular.module('aleChimp', ['ionic',
     'TabController',
     'HomeController',
     'BeerController',
+    'BeerDetailController',
     'PatronController',
     'PatronDetailController',
     'NotificationController',
     'SettingController',
     'UserController',
     'BeerImageService',
-    'BeersPatronIndexService',
     'DatabaseService'
 ])
 
@@ -62,6 +62,15 @@ angular.module('aleChimp', ['ionic',
           }
         }
     });
+    $stateProvider.state('tab.beers-show', {
+        url: '/beers/:beerId',
+        views: {
+          'tab-beers': {
+            templateUrl: 'views/beer-show.html',
+            controller: 'BeerDetailController'
+          }
+        }
+    });
 
     $stateProvider.state('tab.patrons', {
         url: '/patrons',
@@ -72,7 +81,6 @@ angular.module('aleChimp', ['ionic',
           }
         }
     });
-
     $stateProvider.state('tab.patrons-show', {
         url: '/patrons/:patronId',
         views: {

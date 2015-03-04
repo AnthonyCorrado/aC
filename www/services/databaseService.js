@@ -1,6 +1,6 @@
 angular.module('DatabaseService', [])
 
-    .factory('DatabaseService', function(BeerImageService, BeersPatronIndexService) {
+    .factory('DatabaseService', function(BeerImageService) {
         var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
         var barBase = baseRef.child("/bars/1");
         var dataObject = {};
@@ -22,7 +22,6 @@ angular.module('DatabaseService', [])
                     if (customer.beers[2]) {
                         barBase.child('beers/' + customer.beers[2] + '/patrons/').push(patronId);
                     }
-                    // BeersPatronIndexService.setPatronToBeer(name, customer.beers);
                 }
             });
         };

@@ -1,5 +1,5 @@
 <ion-view view-title="Patrons">
-    <ion-content has-bouncing="true" class="background-style" ng-controller="UserController">
+    <ion-content has-bouncing="true" class="background-style">
 
         <div class="patron-details-container">
 
@@ -15,7 +15,9 @@
             </div>
 
             <div class="patron-beer-info">
-                {{}}
+                <div ng-repeat="beer in beerDetail">
+                    <div>{{beer.name}}</div>
+                </div>
             </div>
 
         </div>

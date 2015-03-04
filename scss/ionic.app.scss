@@ -137,6 +137,30 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   @include breakpoint(medium) { width: 41%; margin: 6% 0 0 6%; height: 220px; }
   @include breakpoint(large) { width: 20%; margin: 4% 0 0 4%; height: 200px; }
 }
+// beers show page stylings -------------------------------
+.beer-show-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: rgba(110, 110, 110, 0.8) !important;
+  border: 1px solid white;
+  color: white;
+  font-family: 'Indie Flower', cursive;
+
+  .beer-title {
+    font-size: 2em;
+  }
+
+  .beer-info {
+    width: 60%;
+    float: left;
+  }
+
+  .beer-icon {
+  }
+}
 
 // patrons index view stylings ------------------------------
 .patron-cards {
@@ -176,7 +200,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   border: 1px solid white;
   color: white;
   @include box-shadow(7px, 7px, 4px, rgba(0, 0, 0, 0.5));
-  border-radius: 20px;
+  border-radius: 8px;
   font-family: 'Indie Flower', cursive;
   overflow: hidden;
 }
@@ -186,7 +210,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background-color: rgba(110, 110, 110, 0.8) !important;
   border: 1px solid white;
   @include box-shadow(7px, 7px, 4px, rgba(0, 0, 0, 0.5));
-  border-radius: 20px 20px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 .patron-beer-info {
   width: 100%;
@@ -194,7 +218,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background-color: rgba(110, 110, 110, 0.8) !important;
   border: 1px solid white;
   @include box-shadow(7px, 7px, 4px, rgba(0, 0, 0, 0.5));
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 50px 50px;
 }
 
 // modal form stylings ---------------------------------------------
@@ -243,3 +267,4 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-size: 1.2em;
   }
 }
+
