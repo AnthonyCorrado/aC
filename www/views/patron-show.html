@@ -1,26 +1,32 @@
 <ion-view view-title="Patrons">
     <ion-content has-bouncing="true" class="background-style">
 
-        <div class="patron-details-container">
-
-            <div class="patron-pers-info">
-                {{thisPatron.textNotif}}
-                <div class="item-name">{{thisPatron.fname}} {{thisPatron.lname}}</div>
-                <div class="item-name">Email Notifications?
-                    <span ng-show="thisPatron.receiveEmail">yes</span><span ng-hide="thisPatron.receiveEmail">no</span>
-                </div>
-                <div class="item-name">Text Notifications?
-                    <span ng-show="thisPatron.receiveText">yes</span><span ng-hide="thisPatron.receiveText">no</span>
+        <div class="beer-show-container">
+            <div class="beer-title">{{thisPatron.fname}} {{thisPatron.lname}}</div>
+            <div class="beer-info-wrap">
+                <div class="patron-info">
+                    <div class="">Receive Email Notifs: {{thisPatron.receiveEmail}}</div>
+                    <div class="">{{thisPatron.email}}</div>
+                    <div class="">Receive Text Notifs: {{thisPatron.receiveText}}</div>
+                    <div class="">Phone: {{thisPatron.phone}}</div>
                 </div>
             </div>
+            <div class="" ng-click="editPatron()">Edit Patron</div>
+        </div>
 
-            <div class="patron-beer-info">
-                <div ng-repeat="beer in beerDetail">
-                    <div>{{beer.name}}</div>
+        <div class="beer-show-container">
+            <div class="beer-title">Subscribed Beers</div>
+                <div class="" ng-repeat="subBeer in subBeers">
+                    <div class="">{{subBeer.name}}</div>
                 </div>
-            </div>
-
         </div>
 
     </ion-content>
 </ion-view>
+<!-- 
+                <div>Email Notifications?
+                    <span ng-show="thisPatron.receiveEmail">yes</span><span ng-hide="thisPatron.receiveEmail">no</span>
+                </div>
+                <div class="beer-info">Text Notifications?
+                    <span ng-show="thisPatron.receiveText">yes</span><span ng-hide="thisPatron.receiveText">no</span>
+                </div> -->

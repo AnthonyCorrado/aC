@@ -14,6 +14,14 @@
                     <img ng-src="{{thisBeer.image}}" class="beer-image" />
                 </div>
             </div>
+            <div class="" ng-click="editBeer()">Edit Beer</div>
+        </div>
+
+        <div class="beer-show-container">
+            <div class="beer-title">Subscribed Patrons</div>
+                <div class="" ng-repeat="subPatron in subPatrons">
+                    <div class="">{{subPatron.fname}}</div>
+                </div>
         </div>
 
     </ion-content>

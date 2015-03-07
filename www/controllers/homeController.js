@@ -23,7 +23,8 @@ angular.module('HomeController', [])
         "comment": "",
         "breweryLocation": "",
         "image": "",
-        "patrons": []
+        "patrons": [],
+        "heading": "Add Beer"
     };
 
     $scope.notify = {
@@ -31,7 +32,6 @@ angular.module('HomeController', [])
         "comment": "",
         "time": "",
         "patrons": ""
-
     };
 
     beerBase.on("value", function(snapshot) {

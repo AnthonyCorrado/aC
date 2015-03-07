@@ -1,7 +1,7 @@
 <ion-modal-view>
 
     <ion-header-bar>
-        <div class="form-heading">Add Beer</div>
+        <div class="form-heading">{{drink.heading}}</div>
     </ion-header-bar>
 
         <ion-content>
@@ -23,7 +23,8 @@
                     <input type="text" placeholder="Brewery Location" ng-model="drink.breweryLocation">
                 </label>
 
-                <button ng-click="createBeer(drink)">Create Beer</button>
+                <button ng-hide="drink.exists" ng-click="createBeer(drink)">Create Beer</button>
+                <button ng-show="drink.exists" ng-click="updateBeer(drink)">Update Beer</button>
             </div>
             
 </ion-content>
