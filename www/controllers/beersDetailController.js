@@ -1,13 +1,12 @@
 angular.module('BeerDetailController', [])
 
-.controller('BeerDetailController', function($scope, $stateParams, $ionicModal, DatabaseService, $timeout) {
+.controller('BeerDetailController', function($rootScope, $scope, $stateParams, $ionicModal, DatabaseService, $timeout) {
 
     var beerRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers/" + $stateParams.beerId);
     var patronRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/patrons");
 
     // get names of subscribed patrons
     var getSubPatronsNames = function(subs) {
-        console.log(subs);
         var subPatrons = [];
         _.forEach(subs, function(id) {
             DatabaseService.getPatronById(id)
@@ -27,10 +26,8 @@ angular.module('BeerDetailController', [])
         $scope.drink.exists = true;
         $scope.drink.heading = "Update Beer";
         var subscribers = _.valuesIn($scope.thisBeer.patrons);
-        console.log(subscribers);
         getSubPatronsNames(subscribers);
     });
-
 
     $scope.editBeer = function() {
         $ionicModal.fromTemplateUrl('views/partials/beers-form.html', {
@@ -45,5 +42,35 @@ angular.module('BeerDetailController', [])
     $scope.updateBeer = function(drink) {
         DatabaseService.updateBeer(drink, $stateParams.beerId);
     };
+
+    // ionic modal functions -------------------
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams){
+            if($scope.modal) {
+                $scope.closeModal();
+            }
+        });
+
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+        if($scope.modal) {
+            $scope.modal.remove();
+            $scope.hideMenu = false;
+        }
+    });
+      // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+        $scope.hideMenu = false;
+        // Execute action
+    });
+      // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+        $scope.hideMenu = false;
+        // Execute action
+    });
+    // ----------------------------------------
 
 });

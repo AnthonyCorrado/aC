@@ -13,10 +13,12 @@ angular.module('aleChimp', ['ionic',
     'PatronController',
     'PatronDetailController',
     'NotificationController',
+    'NotificationDetailController',
     'SettingController',
     'UserController',
     'BeerImageService',
-    'DatabaseService'
+    'DatabaseService',
+    'HelperService'
 ])
 
 .run(function($ionicPlatform) {
@@ -50,7 +52,7 @@ angular.module('aleChimp', ['ionic',
             templateUrl: 'views/home.html',
             controller: 'HomeController'
           }
-        }
+        },
     });
 
     $stateProvider.state('tab.beers', {
@@ -97,6 +99,15 @@ angular.module('aleChimp', ['ionic',
           'tab-notifications': {
             templateUrl: 'views/notifications.html',
             controller: 'NotificationController'
+          }
+        }
+    });
+    $stateProvider.state('tab.notifications-show', {
+        url: '/notifications/:notificationId',
+        views: {
+          'tab-notifications': {
+            templateUrl: 'views/notification-show.html',
+            controller: 'NotificationDetailController'
           }
         }
     });

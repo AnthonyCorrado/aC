@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var _ = require('lodash');
+var moment = require('moment');
 
 var paths = {
   sass: ['./scss/**/*.scss']

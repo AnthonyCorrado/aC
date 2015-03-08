@@ -1,6 +1,6 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$scope', '$firebase', '$ionicModal', 'BeerImageService', 'DatabaseService', function($scope, $firebase, $ionicModal, BeerImageService, DatabaseService) {
+.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'DatabaseService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, DatabaseService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1");
     var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
@@ -13,7 +13,8 @@ angular.module('HomeController', [])
         "email": "",
         "receiveText": false,
         "phone": "",
-        "beers": []
+        "beers": [],
+        "heading": "Add Patron"
     };
 
     $scope.drink = {
@@ -40,6 +41,14 @@ angular.module('HomeController', [])
           $scope.beers = snapshot.val();
         }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
+        });
+
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams){
+            console.log('state changed');
+            if($scope.modal) {
+                $scope.closeModal();
+            }
         });
 
     $scope.addPatron = function() {
@@ -78,6 +87,21 @@ angular.module('HomeController', [])
         });
     };
 
+    // ------------ forms functions for adding new items ----------------
+    $scope.createPatron = function(customer) {
+        customer.beers = [customer.beers.beer1 || null, customer.beers.beer2 || null, customer.beers.beer3 || null];
+        DatabaseService.createPatron(customer);
+    };
+
+    $scope.createBeer = function(drink) {
+        DatabaseService.createBeer(drink);
+    };
+
+    $scope.createNotification = function(notify) {
+        DatabaseService.createNotification(notify);
+    };
+
+    // ionic modal functions -------------------------
     $scope.closeModal = function() {
         $scope.modal.hide();
     };
@@ -96,19 +120,5 @@ angular.module('HomeController', [])
         $scope.hideMenu = false;
         // Execute action
     });
-
-    // ------------ forms functions for adding new items ----------------
-    $scope.createPatron = function(customer) {
-        customer.beers = [customer.beers.beer1 || null, customer.beers.beer2 || null, customer.beers.beer3 || null];
-        DatabaseService.createPatron(customer);
-    };
-
-    $scope.createBeer = function(drink) {
-        DatabaseService.createBeer(drink);
-    };
-
-    $scope.createNotification = function(notify) {
-        DatabaseService.createNotification(notify);
-    };
-
+    // -------------------------------------------
 }]);

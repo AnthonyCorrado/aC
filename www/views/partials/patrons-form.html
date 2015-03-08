@@ -1,7 +1,7 @@
 <ion-modal-view>
 
     <ion-header-bar>
-        <div class="form-heading">Add Patron</div>
+        <div class="form-heading">{{customer.heading}}</div>
     </ion-header-bar>
 
     <ion-content>
@@ -17,7 +17,7 @@
             <label class="checkbox">
                 <input type="checkbox" ng-model="customer.receiveEmail">
             </label>
-            Email Notification?
+            Email Notification? {{customer.beers.beer1}}
         </div>
 
         <label class="item item-input">
@@ -36,37 +36,74 @@
             <input type="text" placeholder="Phone" ng-model="customer.phone">
         </label>
 
-        <label class="item item-input item-select">
-                <div class="input-label">
-                       <div class="custom-form-text">Beer</div>
-                </div>
+        <!-- new patron beer form -->
+        <div ng-hide="customer.exists" class="beer-selection-inputs">
+            <label class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Beer</div>
+                    </div>
 
-                <select ng-model="customer.beers.beer1">
-                    <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
-                </select>
-        </label>
+                    <select ng-model="customer.beers.beer1">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
+                    </select>
+            </label>
 
-        <label ng-if="customer.beers.beer1.length > 0" class="item item-input item-select">
-                <div class="input-label">
-                       <div class="custom-form-text">Beer</div>
-                </div>
+            <label ng-if="customer.beers.beer1.length > 0" class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Beer</div>
+                    </div>
 
-                <select ng-model="customer.beers.beer2">
-                    <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
-                </select>
-        </label>
+                    <select ng-model="customer.beers.beer2">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
+                    </select>
+            </label>
 
-        <label ng-if="customer.beers.beer2.length > 0" class="item item-input item-select">
-                <div class="input-label">
-                       <div class="custom-form-text">Beer</div>
-                </div>
+            <label ng-if="customer.beers.beer2.length > 0" class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Beer</div>
+                    </div>
 
-                <select ng-model="customer.beers.beer3">
-                    <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
-                </select>
-        </label>
+                    <select ng-model="customer.beers.beer3">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
+                    </select>
+            </label>
+        </div>
 
-        <button ng-click="createPatron(customer)">Create Patron</button>
+        <!-- existing patron beer form -->
+        <div ng-show="customer.exists" class="beer-selection-inputs">
+            <label class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Beer</div>
+                    </div>
+
+                    <select ng-model="patronBeers.beers.beer1">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}" selected="patronBeers.beers.beer1">{{beer.name}}</option>
+                    </select>
+            </label>
+
+            <label ng-if="true" class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Beer</div>
+                    </div>
+
+                    <select ng-model="patronBeers.beers.beer2">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}" selected="patronBeers.beers.beer2">{{beer.name}}</option>
+                    </select>
+            </label>
+
+            <label ng-if="true" class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Beer</div>
+                    </div>
+
+                    <select ng-model="patronBeers.beers.beer3">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}" selected="patronBeers.beers.beer3">{{patronBeers.beers.beer3.name}}</option>
+                    </select>
+            </label>
+        </div>
+
+        <button ng-hide="customer.exists" ng-click="createPatron(customer)">Create Patron</button>
+        <button ng-show="customer.exists" ng-click="updatePatron(customer)">Update Patron</button>
 
     </div>
 </ion-content>

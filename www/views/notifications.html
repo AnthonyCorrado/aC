@@ -1,11 +1,11 @@
 <ion-view view-title="Notifications">
     <ion-content class="background-style">
 
-        <div ng-repeat="notification in notifications">
-            <div class="patron-cards patron-card-size {{floatedLeft}}">
-                <div class="item-name">{{notification.time}}</div>
+        <div ng-repeat="(name, notification) in notifications | object2Array | orderBy: 'time' :true">
+            <a href="#/tab/notifications/{{name}}"><div class="patron-cards patron-card-size {{floatedLeft}}">
+                <div class="item-name">{{notification.parsedTime}}</div>
                 <div class="item-name">{{notification.beer}}</div>
-            </div>
+            </div></a>
         </div>
         
     </ion-content>

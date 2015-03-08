@@ -4,6 +4,7 @@ angular.module('DatabaseService', [])
         var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
         var barBase = baseRef.child("/bars/1");
         var patronRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/patrons");
+        var beerRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
         var dataObject = {};
 
         dataObject.createPatron = function(customer) {
@@ -22,6 +23,24 @@ angular.module('DatabaseService', [])
                     }
                     if (customer.beers[2]) {
                         barBase.child('beers/' + customer.beers[2] + '/patrons/').push(patronId);
+                    }
+                }
+            });
+        };
+
+        dataObject.updatePatron = function(customer, patId) {
+            var id = barBase.child('patrons/' + patId).set(customer);
+            patronRef.child("/" + patId).set(customer, function(err) {
+                if (!err) {
+                    if (customer.beers[0]) {
+                        console.log(customer.beers[0]);
+                        barBase.child('beers/' + customer.beers[0] + '/patrons/').push(patId);
+                    }
+                    if (customer.beers[1]) {
+                        barBase.child('beers/' + customer.beers[1] + '/patrons/').push(patId);
+                    }
+                    if (customer.beers[2]) {
+                        barBase.child('beers/' + customer.beers[2] + '/patrons/').push(patId);
                     }
                 }
             });
@@ -51,7 +70,15 @@ angular.module('DatabaseService', [])
             var patron = {};
             var deferred = $q.defer();
             patronRef.child('/' + id).once('value', function(snapshot) {
-                console.log(snapshot.val());
+                deferred.resolve(snapshot.val());
+            });
+            return deferred.promise;
+        };
+
+        dataObject.getBeerById = function(id) {
+            var beer = {};
+            var deferred = $q.defer();
+            beerRef.child('/' + id).once('value', function(snapshot) {
                 deferred.resolve(snapshot.val());
             });
             return deferred.promise;

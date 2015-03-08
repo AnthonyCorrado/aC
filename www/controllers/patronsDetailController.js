@@ -1,36 +1,90 @@
 angular.module('PatronDetailController', [])
 
-.controller('PatronDetailController', function($scope, $stateParams) {
+.controller('PatronDetailController', function($rootScope, $scope, $stateParams, DatabaseService, $ionicModal) {
 
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/patrons/" + $stateParams.patronId);
     var beerRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
 
-    var getSubBeersNames = function(subs) {
-        console.log(subs);
-        var subPatrons = [];
-        _.forEach(subs, function(id) {
-            DatabaseService.getPatronById(id)
+    var getSubBeersNames = function(subs, customer) {
+        var subBeers = [];
+        var obj = _.forEach(subs, function(id) {
+            DatabaseService.getBeerById(id)
                 .then(function(response) {
-                    subPatrons.push(response);
-                    $scope.subPatrons = subPatrons;
+                    subBeers.push(response);
+                    console.log(subBeers[0]);
+                    $scope.subBeers = subBeers;
+                    customer.beers.beer1 = subBeers[0];
+                    customer.beers.beer2 = subBeers[1];
+                    customer.beers.beer3 = subBeers[2];
+                    $scope.patronBeers = customer;
                 });
-            
         });
     };
 
     baseRef.once('value', function(snapshot) {
         beerArray = [];
         $scope.thisPatron = snapshot.val();
-
-            // // retrieves each beer's details by beers/uniqueId
-            // if ($scope.thisPatron.beers) {
-            //     for (i=0; i < $scope.thisPatron.beers.length; i++) {
-            //         beerRef.child($scope.thisPatron.beers[i]).once('value', function(snapshot) {
-            //             console.log(snapshot.val());
-            //             beerArray.push(snapshot.val());
-            //             $scope.beerDetail = beerArray;
-            //         });
-            //     }
-            // }
+        $scope.customer = snapshot.val();
+        $scope.customer.exists = true;
+        $scope.customer.heading = "Update Patron";
+        var subscribers = _.valuesIn($scope.thisPatron.beers);
+        getSubBeersNames(subscribers, $scope.customer);
+        console.log(subscribers);
     });
+
+    $scope.editPatron = function() {
+        $ionicModal.fromTemplateUrl('views/partials/patrons-form.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        });
+    };
+
+    $scope.updatePatron = function(customer) {
+        console.log(customer);
+        customer.beers = [customer.beers.beer1 || null, customer.beers.beer2 || null, customer.beers.beer3 || null];
+        DatabaseService.updatePatron(customer, $stateParams.patronId);
+    };
+
+    // get all beers --------
+    beerRef.on("value", function(snapshot) {
+          var data = snapshot.val();
+          console.log(data);
+          $scope.beers = snapshot.val();
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
+
+    // ionic modal functions -------------------
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams){
+            console.log('state changed');
+            if ($scope.modal) {
+                $scope.closeModal();
+            }
+        });
+
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+        if ($scope.modal) {
+            $scope.modal.remove();
+        }
+        $scope.hideMenu = false;
+    });
+      // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+        $scope.hideMenu = false;
+        // Execute action
+    });
+      // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+        $scope.hideMenu = false;
+        // Execute action
+    });
+    // ----------------------------------------
 });
