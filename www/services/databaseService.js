@@ -73,8 +73,13 @@ angular.module('DatabaseService', [])
             var d = new Date();
             var n = d.getTime();
             notify.time = n;
-            console.log(notify);
-            barBase.child('notifications').push(notify);
+            this.getBeerById(notify.beerId)
+                .then(function(response) {
+                    _.forEach(response.patrons, function(key) {
+                        notify.patrons.push(key);
+                    });
+                    barBase.child('notifications').push(notify);
+                });
         };
 
         dataObject.getNotificationById = function(id) {

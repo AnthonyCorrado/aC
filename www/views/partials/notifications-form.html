@@ -11,8 +11,8 @@
                         Beer
                     </div>
 
-                    <select ng-model="notify.beer">
-                            <option ng-repeat="beer in beers">{{beer.name}}</option>
+                    <select ng-model="notify.beerId">
+                            <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
                     </select>
                 </label>
 
@@ -20,7 +20,7 @@
                     <input type="textarea" placeholder="Comment" ng-model="notify.comment">
                 </label>
 
-                <button ng-click="createNotification(notify)">Create Notification</button>
+                <button ng-click="createNotification(notify)">Create Notification{{key}}</button>
 
 
         </ion-content>

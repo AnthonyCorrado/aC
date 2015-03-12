@@ -6,8 +6,19 @@ angular.module('NotificationController', [])
 
     // get all notifications
     DatabaseService.getAllNotifs()
-        .then(function(data) {
-            $scope.notifications = data;
+        .then(function(notifs) {
+            // if notification has beer id get beer object
+            _.forEach(notifs, function(beerObj) {
+                if (beerObj && beerObj.beerId) {
+                    DatabaseService.getBeerById(beerObj.beerId)
+                        .then(function(response) {
+                            notifs[beerObj.key].beer = response.name;
+                            return notifs;
+                        });
+                }
+            });
+            console.log(notifs);
+            $scope.notifications = notifs;
         });
 
     $scope.sortBy = function(cat) {

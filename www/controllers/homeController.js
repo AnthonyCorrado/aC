@@ -29,10 +29,10 @@ angular.module('HomeController', [])
     };
 
     $scope.notify = {
-        "beer": "",
+        "beerId": "",
         "comment": "",
         "time": "",
-        "patrons": ""
+        "patrons": []
     };
 
     beerBase.on("value", function(snapshot) {
@@ -99,6 +99,7 @@ angular.module('HomeController', [])
 
     $scope.createNotification = function(notify) {
         DatabaseService.createNotification(notify);
+        $scope.closeModal();
     };
 
     // ionic modal functions -------------------------

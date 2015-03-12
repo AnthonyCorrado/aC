@@ -3,13 +3,15 @@
 
         <div class="beer-show-container">
             <div class="beer-title">{{notification.parsedTime}}</div>
-            <div class="beer-title">{{notification.beer}}</div>
+            <div class="beer-title">{{beer.name}}</div>
+            <br />
+            <div class="beer-title">comment: {{notification.comment}}</div>
         </div>
 
         <div class="beer-show-container">
             <div class="beer-title">Subscribed Patrons</div>
-                <div class="" ng-repeat="patron in notification.patrons">
-                    <div class="">{{patron}}</div>
+                <div class="" ng-repeat="patron in subPatrons">
+                    <div class="">{{patron.fname}}</div>
                 </div>
         </div>
 
