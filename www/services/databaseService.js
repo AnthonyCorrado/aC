@@ -1,11 +1,22 @@
 angular.module('DatabaseService', [])
 
-    .factory('DatabaseService', function(BeerImageService, $q) {
-        var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
-        var barBase = baseRef.child("/bars/1");
-        var patronRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/patrons");
-        var beerRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
+    .factory('DatabaseService', function(BeerImageService, $q, HelperService) {
+        var ref = new Firebase("https://ale-chimp.firebaseio.com");
+        var barBase = ref.child("/bars/1");
+
+        var patronRef = barBase.child("/patrons");
+        var beerRef = barBase.child("beers");
+        var notifRef = barBase.child("/notifications");
         var dataObject = {};
+
+        dataObject.getAllNotifs = function() {
+            var notifications = {};
+            var deferred = $q.defer();
+            notifRef.on("value", function(snapshot) {
+                deferred.resolve(HelperService.getTimes(snapshot.val()));
+            });
+            return deferred.promise;
+        };
 
         dataObject.createPatron = function(customer) {
             console.log(customer);
@@ -64,6 +75,15 @@ angular.module('DatabaseService', [])
             notify.time = n;
             console.log(notify);
             barBase.child('notifications').push(notify);
+        };
+
+        dataObject.getNotificationById = function(id) {
+            var notification = {};
+            var deferred = $q.defer();
+            notifRef.child('/' + id).once('value', function(snapshot) {
+                deferred.resolve(HelperService.getTime(snapshot.val()));
+            });
+            return deferred.promise;
         };
 
         dataObject.getPatronById = function(id) {

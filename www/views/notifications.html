@@ -1,8 +1,16 @@
 <ion-view view-title="Notifications">
     <ion-content class="background-style">
 
-        <div ng-repeat="(name, notification) in notifications | object2Array | orderBy: 'time' :true">
-            <a href="#/tab/notifications/{{name}}"><div class="patron-cards patron-card-size {{floatedLeft}}">
+        <div class="notify-buttons">
+            <div class="button-bar">
+              <div class="button button-positive remove-border" ng-click="sortBy('time')">Time</div>
+              <div class="button button-positive" ng-click="sortBy('beer')">Beer</div>
+              <div class="button button-positive" ng-click="sortBy('patrons.length')">Popularity</div>
+            </div>
+        </div>
+
+        <div ng-repeat="(name, notification) in notifications | object2Array | orderBy: filterVar :reverse">
+            <a href="#/tab/notifications/{{notification.key}}"><div class="patron-cards patron-card-size {{floatedLeft}}">
                 <div class="item-name">{{notification.parsedTime}}</div>
                 <div class="item-name">{{notification.beer}}</div>
             </div></a>

@@ -5,18 +5,29 @@ angular.module('HelperService', [])
     var helperObj = {};
 
     // used for notifications
-    helperObj.getTime = function(data) {
+    helperObj.getTimes = function(data) {
         return _.forEach(data, function(notif) {
-            console.log(notif);
             var time = notif.time;
             var timeStamp = moment(time);
-            console.log(timeStamp._d);
             parsedTime = moment(timeStamp._d).format("ddd, MMM Do YYYY, LT");
-            console.log(parsedTime);
             notif.parsedTime = parsedTime;
-
-            console.log(notif);
         });
+    };
+
+    helperObj.getTime = function(data) {
+        console.log(data);
+        var time = data.time;
+        var timeStamp = moment(time);
+        parsedTime = moment(timeStamp._d).format("ddd, MMM Do YYYY, LT");
+        data.parsedTime = parsedTime;
+        return data;
+
+        // return _.forEach(data, function(notif) {
+        //     var time = notif.time;
+        //     var timeStamp = moment(time);
+        //     parsedTime = moment(timeStamp._d).format("ddd, MMM Do YYYY, LT");
+        //     notif.parsedTime = parsedTime;
+        // });
     };
 
     return helperObj;
