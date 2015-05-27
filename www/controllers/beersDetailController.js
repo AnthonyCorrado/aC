@@ -1,9 +1,9 @@
 angular.module('BeerDetailController', [])
 
-.controller('BeerDetailController', function($rootScope, $scope, $stateParams, $ionicModal, DatabaseService, $timeout) {
+.controller('BeerDetailController', function($rootScope, $scope, $stateParams, $ionicModal, DatabaseService, $timeout, BeerService) {
 
-    var beerRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers/" + $stateParams.beerId);
-    var patronRef = new Firebase("https://ale-chimp.firebaseio.com/bars/1/patrons");
+    var beerRef = new Firebase("https://ale-chimp.firebaseio.com/bars/0/beers/" + $stateParams.beerId);
+    var patronRef = new Firebase("https://ale-chimp.firebaseio.com/bars/0/patrons");
 
     // get names of subscribed patrons
     var getSubPatronsNames = function(subs) {
@@ -40,7 +40,8 @@ angular.module('BeerDetailController', [])
     };
 
     $scope.updateBeer = function(drink) {
-        DatabaseService.updateBeer(drink, $stateParams.beerId);
+        BeerService.updateBeer(drink, $stateParams.beerId);
+        $scope.closeModal();
     };
 
     // ionic modal functions -------------------

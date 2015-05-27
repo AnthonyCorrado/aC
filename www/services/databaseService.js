@@ -2,7 +2,7 @@ angular.module('DatabaseService', [])
 
     .factory('DatabaseService', function(BeerImageService, $q, HelperService) {
         var ref = new Firebase("https://ale-chimp.firebaseio.com");
-        var barBase = ref.child("/bars/1");
+        var barBase = ref.child("/bars/0");
 
         var patronRef = barBase.child("/patrons");
         var beerRef = barBase.child("beers");
@@ -55,18 +55,6 @@ angular.module('DatabaseService', [])
                     }
                 }
             });
-        };
-
-        dataObject.createBeer = function(drink) {
-            drink.image = BeerImageService.getImage(drink.style);
-            console.log(drink);
-            barBase.child('beers').push(drink);
-        };
-
-        dataObject.updateBeer = function(drink, id) {
-            drink.image = BeerImageService.getImage(drink.style);
-            console.log(drink);
-            barBase.child('beers/' + id).set(drink);
         };
 
         dataObject.createNotification = function(notify) {

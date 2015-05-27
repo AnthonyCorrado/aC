@@ -4,7 +4,7 @@ angular.module('PatronController', [])
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var sync = $firebase(baseRef);
 
-    baseRef.child('bars/1/patrons').on("value", function(snapshot) {
+    baseRef.child('bars/0/patrons').on("value", function(snapshot) {
           console.log(snapshot.val());
           $timeout(function() {
             console.log(snapshot.val());

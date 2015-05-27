@@ -1,9 +1,9 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'DatabaseService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, DatabaseService) {
+.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'DatabaseService', 'BeerService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, DatabaseService, BeerService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
-    var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1");
-    var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/1/beers");
+    var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0");
+    var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0/beers");
     var sync = $firebase(baseRef);
 
     $scope.customer = {
@@ -34,14 +34,6 @@ angular.module('HomeController', [])
         "time": "",
         "patrons": []
     };
-
-    beerBase.on("value", function(snapshot) {
-          var data = snapshot.val();
-          console.log(data);
-          $scope.beers = snapshot.val();
-        }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){
@@ -91,10 +83,12 @@ angular.module('HomeController', [])
     $scope.createPatron = function(customer) {
         customer.beers = [customer.beers.beer1 || null, customer.beers.beer2 || null, customer.beers.beer3 || null];
         DatabaseService.createPatron(customer);
+        $scope.closeModal();
     };
 
     $scope.createBeer = function(drink) {
-        DatabaseService.createBeer(drink);
+        BeerService.createBeer(drink);
+        $scope.closeModal();
     };
 
     $scope.createNotification = function(notify) {
