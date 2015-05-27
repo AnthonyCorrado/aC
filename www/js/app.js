@@ -13,6 +13,7 @@ angular.module('aleChimp', ['ionic',
     'UserController',
     'BeerImageService',
     'BeerService',
+    'PatronService',
     'DatabaseService',
     'HelperService'
 ])

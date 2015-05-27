@@ -18,45 +18,6 @@ angular.module('DatabaseService', [])
             return deferred.promise;
         };
 
-        dataObject.createPatron = function(customer) {
-            console.log(customer);
-            var id = barBase.child('patrons').push(customer);
-            id.set(customer, function(err) {
-                if (!err) {
-                    var patronId = id.key();
-                    console.log(patronId);
-                    if (customer.beers[0]) {
-                        console.log(customer.beers[0]);
-                        barBase.child('beers/' + customer.beers[0] + '/patrons/').push(patronId);
-                    }
-                    if (customer.beers[1]) {
-                        barBase.child('beers/' + customer.beers[1] + '/patrons/').push(patronId);
-                    }
-                    if (customer.beers[2]) {
-                        barBase.child('beers/' + customer.beers[2] + '/patrons/').push(patronId);
-                    }
-                }
-            });
-        };
-
-        dataObject.updatePatron = function(customer, patId) {
-            var id = barBase.child('patrons/' + patId).set(customer);
-            patronRef.child("/" + patId).set(customer, function(err) {
-                if (!err) {
-                    if (customer.beers[0]) {
-                        console.log(customer.beers[0]);
-                        barBase.child('beers/' + customer.beers[0] + '/patrons/').push(patId);
-                    }
-                    if (customer.beers[1]) {
-                        barBase.child('beers/' + customer.beers[1] + '/patrons/').push(patId);
-                    }
-                    if (customer.beers[2]) {
-                        barBase.child('beers/' + customer.beers[2] + '/patrons/').push(patId);
-                    }
-                }
-            });
-        };
-
         dataObject.createNotification = function(notify) {
             var d = new Date();
             var n = d.getTime();

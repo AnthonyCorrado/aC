@@ -1,20 +1,16 @@
 angular.module('PatronController', [])
 
-.controller('PatronController', ['$scope', '$timeout', '$firebase', function($scope, $timeout, $firebase) {
+.controller('PatronController', ['$scope', '$timeout', '$firebase', 'PatronService', function($scope, $timeout, $firebase, PatronService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var sync = $firebase(baseRef);
 
-    baseRef.child('bars/0/patrons').on("value", function(snapshot) {
-          console.log(snapshot.val());
-          $timeout(function() {
-            console.log(snapshot.val());
-            $scope.patrons = snapshot.val();
-        },200);
-        }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-    });
+    PatronService.getAllPatrons()
+        .then(function(data) {
+            console.log(data);
+            $scope.patrons = data;
+        });
 
-    $timeout(function() {
-        $scope.floatedLeft = "floated-left";
-    }, 100);
+    // $timeout(function() {
+    //     $scope.floatedLeft = "floated-left";
+    // }, 100);
 }]);
