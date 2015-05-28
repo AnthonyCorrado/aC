@@ -14,11 +14,11 @@ angular.module('aleChimp', ['ionic',
     'BeerImageService',
     'BeerService',
     'PatronService',
-    'DatabaseService',
+    'NotificationService',
     'HelperService'
 ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $location) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -29,94 +29,105 @@ angular.module('aleChimp', ['ionic',
             StatusBar.styleDefault();
         }
     });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/tab/home');
 
+    $stateProvider
+        .state('tab', {
+            url: "/tab",
+            abstract: true,
+            templateUrl: "views/partials/tabs.html",
+            controller: 'TabController'
+        })
 
-    $stateProvider.state('tab', {
-        url: "/tab",
-        abstract: true,
-        templateUrl: "views/partials/tabs.html",
-        controller: 'TabController'
-    });
+        .state('tab.home', {
+            url: '/home',
+            views: {
+              'tab-home': {
+                templateUrl: 'views/home.html',
+                controller: 'HomeController'
+              }
+            },
+        })
 
-    $stateProvider.state('tab.home', {
-        url: '/home',
-        views: {
-          'tab-home': {
-            templateUrl: 'views/home.html',
-            controller: 'HomeController'
-          }
-        },
-    });
+        .state('tab.beers', {
+            url: '/beers',
+            views: {
+              'tab-beers': {
+                templateUrl: 'views/beers.html',
+                controller: 'BeerController'
+              }
+            }
+        })
 
-    $stateProvider.state('tab.beers', {
-        url: '/beers',
-        views: {
-          'tab-beers': {
-            templateUrl: 'views/beers.html',
-            controller: 'BeerController'
-          }
-        }
-    });
-    $stateProvider.state('tab.beers-show', {
-        url: '/beers/:beerId',
-        views: {
-          'tab-beers': {
-            templateUrl: 'views/beer-show.html',
-            controller: 'BeerDetailController'
-          }
-        }
-    });
+        .state('tab.beers-show', {
+            url: '/beers/:beerId',
+            views: {
+              'tab-beers': {
+                templateUrl: 'views/beer-show.html',
+                controller: 'BeerDetailController'
+              }
+            }
+        })
 
-    $stateProvider.state('tab.patrons', {
-        url: '/patrons',
-        views: {
-          'tab-patrons': {
-            templateUrl: 'views/patrons.html',
-            controller: 'PatronController'
-          }
-        }
-    });
-    $stateProvider.state('tab.patrons-show', {
-        url: '/patrons/:patronId',
-        views: {
-          'tab-patrons': {
-            templateUrl: 'views/patron-show.html',
-            controller: 'PatronDetailController'
-          }
-        }
-    });
+        .state('tab.patrons', {
+            cache: false,
+            url: '/patrons',
+            views: {
+              'tab-patrons': {
+                templateUrl: 'views/patrons.html',
+                controller: 'PatronController'
+              }
+            }
+        })
 
-    $stateProvider.state('tab.notifications', {
-        url: '/notifications',
-        views: {
-          'tab-notifications': {
-            templateUrl: 'views/notifications.html',
-            controller: 'NotificationController'
-          }
-        }
-    });
-    $stateProvider.state('tab.notifications-show', {
-        url: '/notifications/:notificationId',
-        views: {
-          'tab-notifications': {
-            templateUrl: 'views/notification-show.html',
-            controller: 'NotificationDetailController'
-          }
-        }
-    });
+        .state('tab.patrons-show', {
+            cache: false,
+            url: '/patrons/:patronId',
+            views: {
+              'tab-patrons': {
+                templateUrl: 'views/patron-show.html',
+                controller: 'PatronDetailController'
+              }
+            }
+        })
 
-    $stateProvider.state('tab.settings', {
-        url: '/settings',
-        views: {
-          'tab-settings': {
-            templateUrl: 'views/settings.html',
-            controller: 'SettingController'
-          }
-        }
-    });
+        .state('tab.notifications', {
+            url: '/notifications',
+            views: {
+              'tab-notifications': {
+                templateUrl: 'views/notifications.html',
+                controller: 'NotificationController'
+              }
+            }
+        })
+
+        .state('tab.notifications-show', {
+            url: '/notifications/:notificationId',
+            views: {
+              'tab-notifications': {
+                templateUrl: 'views/notification-show.html',
+                controller: 'NotificationDetailController'
+              }
+            },
+            onExit: function() {
+                console.log('catssss!');
+                var path = $location.path();
+    console.log(path);
+            }
+        })
+
+        .state('tab.settings', {
+            url: '/settings',
+            views: {
+              'tab-settings': {
+                templateUrl: 'views/settings.html',
+                controller: 'SettingController'
+              }
+            }
+        });
 
 });

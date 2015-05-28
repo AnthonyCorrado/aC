@@ -1,6 +1,6 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'DatabaseService', 'BeerService', 'PatronService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, DatabaseService, BeerService, PatronService) {
+.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeerService', 'PatronService', 'NotificationService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, BeerService, PatronService, NotificationService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0");
     var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0/beers");
@@ -100,7 +100,7 @@ angular.module('HomeController', [])
     };
 
     $scope.createNotification = function(notify) {
-        DatabaseService.createNotification(notify);
+        NotificationService.createNotification(notify);
         $scope.closeModal();
     };
 

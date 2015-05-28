@@ -1,6 +1,6 @@
 angular.module('BeerDetailController', [])
 
-.controller('BeerDetailController', function($rootScope, $scope, $stateParams, $ionicModal, DatabaseService, $timeout, BeerService) {
+.controller('BeerDetailController', function($rootScope, $scope, $stateParams, $ionicModal, $timeout, BeerService, PatronService) {
 
     var beerRef = new Firebase("https://ale-chimp.firebaseio.com/bars/0/beers/" + $stateParams.beerId);
     var patronRef = new Firebase("https://ale-chimp.firebaseio.com/bars/0/patrons");
@@ -9,7 +9,7 @@ angular.module('BeerDetailController', [])
     var getSubPatronsNames = function(subs) {
         var subPatrons = [];
         _.forEach(subs, function(id) {
-            DatabaseService.getPatronById(id)
+            PatronService.getPatronById(id)
                 .then(function(response) {
                     subPatrons.push(response);
                     $scope.subPatrons = subPatrons;

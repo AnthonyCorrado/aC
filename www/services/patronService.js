@@ -54,6 +54,15 @@ angular.module('PatronService', [])
             });
         };
 
+        patronData.getPatronById = function(id) {
+            var patron = {};
+            var deferred = $q.defer();
+            patronRef.child('/' + id).once('value', function(snapshot) {
+                deferred.resolve(snapshot.val());
+            });
+            return deferred.promise;
+        };
+
         return patronData;
     });
 

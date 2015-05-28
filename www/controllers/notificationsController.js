@@ -1,11 +1,11 @@
 angular.module('NotificationController', [])
 
-.controller('NotificationController', ['$scope', '$firebase', '$timeout', 'HelperService', 'DatabaseService', 'BeerService', function($scope, $firebase, $timeout, HelperService, DatabaseService, BeerService) {
+.controller('NotificationController', ['$scope', '$firebase', '$timeout', 'HelperService', 'BeerService', 'NotificationService', function($scope, $firebase, $timeout, HelperService, BeerService, NotificationService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var sync = $firebase(baseRef);
 
     // get all notifications
-    DatabaseService.getAllNotifs()
+    NotificationService.getAllNotifs()
         .then(function(notifs) {
             // if notification has beer id get beer object
             _.forEach(notifs, function(beerObj) {
