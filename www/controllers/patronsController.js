@@ -1,6 +1,6 @@
 angular.module('PatronController', [])
 
-.controller('PatronController', ['$scope', '$timeout', '$firebase', 'PatronService', '$ionicHistory', function($scope, $timeout, $firebase, PatronService, $ionicHistory) {
+.controller('PatronController', ['$scope', '$timeout', '$firebase', 'PatronService', function($scope, $timeout, $firebase, PatronService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var sync = $firebase(baseRef);
 
@@ -10,7 +10,6 @@ angular.module('PatronController', [])
             $scope.patrons = data;
         });
 
-        $ionicHistory.clearCache();
     // $timeout(function() {
     //     $scope.floatedLeft = "floated-left";
     // }, 100);

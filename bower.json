@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "lodash": "~3.4.0",
-    "moment": "~2.9.0"
+    "moment": "~2.9.0",
+    "checklist-model": "~0.2.4"
   }
 }

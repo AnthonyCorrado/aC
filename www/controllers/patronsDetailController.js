@@ -22,6 +22,7 @@ angular.module('PatronDetailController', [])
     };
 
     baseRef.once('value', function(snapshot) {
+        console.log(snapshot.val());
         beerArray = [];
         $scope.thisPatron = snapshot.val();
         $scope.customer = snapshot.val();

@@ -89,7 +89,7 @@ angular.module('HomeController', [])
 
     // ------------ forms functions for adding new items ----------------
     $scope.createPatron = function(customer) {
-        customer.beers = [customer.beers.beer1 || null, customer.beers.beer2 || null, customer.beers.beer3 || null];
+        console.log(customer);
         PatronService.createPatron(customer);
         $scope.closeModal();
     };

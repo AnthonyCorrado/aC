@@ -17,7 +17,7 @@
             <label class="checkbox">
                 <input type="checkbox" ng-model="customer.receiveEmail">
             </label>
-            Email Notification? {{customer.beers.beer1}}
+            Email Notification?
         </div>
 
         <label class="item item-input">
@@ -38,22 +38,18 @@
 
         <!-- new patron beer form -->
         <div ng-hide="customer.exists" class="beer-selection-inputs">
-            <label class="item item-input item-select">
-                    <div class="input-label">
-                           <div class="custom-form-text">Beer</div>
-                    </div>
 
-                    <select ng-model="customer.beers.beer1">
-                        <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
-                    </select>
+            <label ng-repeat="(key, beer) in beers">
+                <input type="checkbox" checklist-model="customer.beers" checklist-value="key">{{beer.name}}
             </label>
 
-            <label ng-if="customer.beers.beer1.length > 0" class="item item-input item-select">
+{{customer.beers}}
+            <!-- <label ng-if="customer.beers" class="item item-input item-select">
                     <div class="input-label">
                            <div class="custom-form-text">Beer</div>
                     </div>
 
-                    <select ng-model="customer.beers.beer2">
+                    <select ng-model="customer.beers">
                         <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
                     </select>
             </label>
@@ -66,12 +62,39 @@
                     <select ng-model="customer.beers.beer3">
                         <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
                     </select>
-            </label>
+            </label> -->
         </div>
 
         <!-- existing patron beer form -->
         <div ng-show="customer.exists" class="beer-selection-inputs">
+
+            <label ng-repeat="(key, beer) in beers">
+                <input type="checkbox" checklist-model="customer.beers" checklist-value="key">{{beer.name}}
+            </label>
+
+{{customer.beers}}
+
+            <!-- <label class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Beer</div>
+                    </div>
+
+                    <select ng-model="patronBeers.beers.beer1">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}" selected="patronBeers.beers.beer1">{{beer.name}}</option>
+                    </select>
+            </label>
+
             <label class="item item-input item-select">
+                    <div class="input-label">
+                           <div class="custom-form-text">Add Beer</div>
+                    </div>
+
+                    <select ng-model="customer.beers.beer2">
+                        <option ng-repeat="(key, beer) in beers" value="{{key}}">{{beer.name}}</option>
+                    </select>
+            </label> -->
+
+            <!-- <label class="item item-input item-select">
                     <div class="input-label">
                            <div class="custom-form-text">Beer</div>
                     </div>
@@ -99,7 +122,7 @@
                     <select ng-model="patronBeers.beers.beer3">
                         <option ng-repeat="(key, beer) in beers" value="{{key}}" selected="patronBeers.beers.beer3">{{patronBeers.beers.beer3.name}}</option>
                     </select>
-            </label>
+            </label> -->
         </div>
 
         <button ng-hide="customer.exists" ng-click="createPatron(customer)">Create Patron</button>

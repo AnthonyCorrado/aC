@@ -15,7 +15,8 @@ angular.module('aleChimp', ['ionic',
     'BeerService',
     'PatronService',
     'NotificationService',
-    'HelperService'
+    'HelperService',
+    'checklist-model'
 ])
 
 .run(function($ionicPlatform, $rootScope, $location) {
@@ -74,7 +75,6 @@ angular.module('aleChimp', ['ionic',
         })
 
         .state('tab.patrons', {
-            cache: false,
             url: '/patrons',
             views: {
               'tab-patrons': {
@@ -85,7 +85,6 @@ angular.module('aleChimp', ['ionic',
         })
 
         .state('tab.patrons-show', {
-            cache: false,
             url: '/patrons/:patronId',
             views: {
               'tab-patrons': {
@@ -112,11 +111,6 @@ angular.module('aleChimp', ['ionic',
                 templateUrl: 'views/notification-show.html',
                 controller: 'NotificationDetailController'
               }
-            },
-            onExit: function() {
-                console.log('catssss!');
-                var path = $location.path();
-    console.log(path);
             }
         })
 

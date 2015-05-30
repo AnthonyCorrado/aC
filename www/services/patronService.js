@@ -21,34 +21,20 @@ angular.module('PatronService', [])
             id.set(customer, function(err) {
                 if (!err) {
                     var patronId = id.key();
-                    console.log(patronId);
-                    if (customer.beers[0]) {
-                        console.log(customer.beers[0]);
-                        barBase.child('beers/' + customer.beers[0] + '/patrons/').push(patronId);
-                    }
-                    if (customer.beers[1]) {
-                        barBase.child('beers/' + customer.beers[1] + '/patrons/').push(patronId);
-                    }
-                    if (customer.beers[2]) {
-                        barBase.child('beers/' + customer.beers[2] + '/patrons/').push(patronId);
+                    for (i = 0; i < customer.beers.length; i++) {
+                        barBase.child('beers/' + customer.beers[i] + '/patrons/').push(patronId);
                     }
                 }
             });
         };
 
         patronData.updatePatron = function(customer, patId) {
-            var id = barBase.child('patrons/' + patId).set(customer);
-            patronRef.child("/" + patId).set(customer, function(err) {
+            console.log(customer);
+            var id = barBase.child('patrons/' + "-JqZ0vmhZz60ECeuJXEj").set(customer);
+            patronRef.child("/" + "-JqZ0vmhZz60ECeuJXEj").set(customer, function(err) {
                 if (!err) {
-                    if (customer.beers[0]) {
-                        console.log(customer.beers[0]);
-                        barBase.child('beers/' + customer.beers[0] + '/patrons/').push(patId);
-                    }
-                    if (customer.beers[1]) {
-                        barBase.child('beers/' + customer.beers[1] + '/patrons/').push(patId);
-                    }
-                    if (customer.beers[2]) {
-                        barBase.child('beers/' + customer.beers[2] + '/patrons/').push(patId);
+                    for (i = 0; i < customer.beers.length; i++) {
+                        barBase.child('beers/' + customer.beers[i] + '/patrons/').push(patronId);
                     }
                 }
             });
