@@ -1,8 +1,6 @@
 angular.module('NotificationController', [])
 
 .controller('NotificationController', ['$scope', '$firebase', '$timeout', 'HelperService', 'BeerService', 'NotificationService', function($scope, $firebase, $timeout, HelperService, BeerService, NotificationService) {
-    var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
-    var sync = $firebase(baseRef);
 
     // get all notifications
     NotificationService.getAllNotifs()

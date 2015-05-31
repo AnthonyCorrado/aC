@@ -1,5 +1,6 @@
 angular.module('aleChimp', ['ionic',
     'firebase',
+    'env-constants',
     'LoginController',
     'TabController',
     'HomeController',
@@ -19,7 +20,7 @@ angular.module('aleChimp', ['ionic',
     'checklist-model'
 ])
 
-.run(function($ionicPlatform, $rootScope, $location) {
+.run(function($ionicPlatform, $rootScope, $location, $ionicHistory, $state) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -29,8 +30,23 @@ angular.module('aleChimp', ['ionic',
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
+
     });
 
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
+        console.log(toState.url);
+        if (toState.url === "/beers/:beerId" && fromState.url !== "/beers") {
+            event.preventDefault();
+            $state.go('tab.beers');
+        } else if (toState.url === "/patrons/:patronId" && fromState.url !== "/patrons") {
+            event.preventDefault();
+            $state.go('tab.patrons');
+        } else if (toState.url === "/notifications/:notificationId" && fromState.url !== "/notifications") {
+            event.preventDefault();
+            $state.go('tab.notifications');
+        }
+    });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

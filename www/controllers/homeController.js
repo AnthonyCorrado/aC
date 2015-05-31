@@ -1,6 +1,6 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeerService', 'PatronService', 'NotificationService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, BeerService, PatronService, NotificationService) {
+.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeerService', 'PatronService', 'NotificationService', 'ConfigService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, BeerService, PatronService, NotificationService, ConfigService) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0");
     var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0/beers");
@@ -45,7 +45,6 @@ angular.module('HomeController', [])
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams){
-            console.log('state changed');
             if($scope.modal) {
                 $scope.closeModal();
             }
@@ -89,7 +88,6 @@ angular.module('HomeController', [])
 
     // ------------ forms functions for adding new items ----------------
     $scope.createPatron = function(customer) {
-        console.log(customer);
         PatronService.createPatron(customer);
         $scope.closeModal();
     };
