@@ -1,11 +1,12 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeerService', 'PatronService', 'NotificationService', 'ConfigService', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, BeerService, PatronService, NotificationService, ConfigService) {
+.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeerService', 'PatronService', 'NotificationService', 'apiUrl', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, BeerService, PatronService, NotificationService, apiUrl) {
     var baseRef = new Firebase("https://ale-chimp.firebaseio.com");
     var barBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0");
     var beerBase = new Firebase("https://ale-chimp.firebaseio.com/bars/0/beers");
     var sync = $firebase(baseRef);
 
+    console.log(apiUrl);
     $scope.customer = {
         "fname": "",
         "lname": "",

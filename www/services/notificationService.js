@@ -1,6 +1,6 @@
 angular.module('NotificationService', [])
 
-    .factory('NotificationService', function($q, HelperService, BeerService, ConfigService) {
+    .factory('NotificationService', function($q, HelperService, BeerService) {
 
         var ref = new Firebase("https://ale-chimp.firebaseio.com"),
             barBase = ref.child("/bars/0"),
