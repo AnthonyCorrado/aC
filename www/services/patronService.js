@@ -1,7 +1,10 @@
 angular.module('PatronService', [])
 
-    .factory('PatronService', function($q) {
-        var ref = new Firebase("https://ale-chimp.firebaseio.com");
+    .factory('PatronService', function($q, configApi) {
+        console.log(configApi);
+
+        var url = configApi.firebase.domain,
+            ref = new Firebase(url);
             barBase = ref.child("/bars/0");
             patronRef = barBase.child("/patrons");
             patronData = {};

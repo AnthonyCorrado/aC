@@ -1,6 +1,5 @@
-angular.module('aleChimp', ['ionic',
+var aleChimp = angular.module('aleChimp', ['ionic',
     'firebase',
-    'env-constants',
     'LoginController',
     'TabController',
     'HomeController',
@@ -35,7 +34,7 @@ angular.module('aleChimp', ['ionic',
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
-        console.log(toState.url);
+        // overrides Ionic's state history within a tab and starts at the parent on state change
         if (toState.url === "/beers/:beerId" && fromState.url !== "/beers") {
             event.preventDefault();
             $state.go('tab.beers');
@@ -141,3 +140,28 @@ angular.module('aleChimp', ['ionic',
         });
 
 });
+
+// bootstrap Angular to allow json data to be stored before initializing controllers/services
+(function() {
+
+    function bootstrapApplication() {
+        angular.element(document).ready(function() {
+            angular.bootstrap(document, ['aleChimp']);
+        });
+    }
+
+    // fetch API data first, then bootstrap the Angular app
+    fetchData().then(bootstrapApplication);
+
+    function fetchData() {
+        var initInjector = angular.injector(["ng"]);
+        var $http = initInjector.get("$http");
+
+        return $http.get("config/api.json").then(function(response) {
+            console.log(response.data.api);
+            aleChimp.constant("configApi", response.data.api);
+        }, function(errorResponse) {
+            console.log('request to get api object failed. ' + errorResponse);
+        });
+    }
+}());

@@ -1,7 +1,8 @@
 angular.module('BeerService', [])
 
-    .factory('BeerService', function($q, BeerImageService) {
-        var ref = new Firebase("https://ale-chimp.firebaseio.com"),
+    .factory('BeerService', function($q, BeerImageService, configApi) {
+        var url = configApi.firebase.domain,
+            ref = new Firebase(url),
             barBase = ref.child("/bars/0"),
             beerRef = barBase.child("/beers"),
             beersData = {};
