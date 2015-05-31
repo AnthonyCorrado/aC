@@ -1,6 +1,6 @@
 angular.module('NotificationService', [])
 
-    .factory('NotificationService', function($q, HelperService, BeerService, configApi) {
+    .factory('NotificationService', function($q, HelperService, BeerService, configApi, EmailService) {
 
         var url = configApi.api.firebase.domain,
             ref = new Firebase(url),
@@ -24,6 +24,8 @@ angular.module('NotificationService', [])
             BeerService.getBeerById(notify.beerId)
                 .then(function(response) {
                     _.forEach(response.patrons, function(key) {
+                        // perhaps a promise here to notify user that patrons have been emailed
+                        EmailService.emailPatron(notify.beerId, notify.comment, key);
                         notify.patrons.push(key);
                     });
                     barBase.child('notifications').push(notify);

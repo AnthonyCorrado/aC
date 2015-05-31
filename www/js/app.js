@@ -17,7 +17,8 @@ var aleChimp = angular.module('aleChimp', ['ionic',
     'NotificationService',
     'HelperService',
     'checklist-model',
-    'MandrillService'
+    'MandrillService',
+    'EmailService'
 ])
 
 .run(function($ionicPlatform, $rootScope, $location, $ionicHistory, $state) {

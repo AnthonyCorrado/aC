@@ -77,10 +77,6 @@ angular.module('HomeController', [])
 
     $scope.addNotification = function() {
 
-        // Mandrill.errorMsg(200)
-        //     .then(function(data) {
-        //         console.log(data);
-        //     });
         $scope.hideMenu = true;
         $ionicModal.fromTemplateUrl('views/partials/notifications-form.html', {
             scope: $scope,
@@ -104,6 +100,7 @@ angular.module('HomeController', [])
 
     $scope.createNotification = function(notify) {
         NotificationService.createNotification(notify);
+        console.log(notify);
         $scope.closeModal();
     };
 
