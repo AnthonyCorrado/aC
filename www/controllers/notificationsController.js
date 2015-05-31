@@ -10,8 +10,10 @@ angular.module('NotificationController', [])
                 if (beerObj && beerObj.beerId) {
                     BeerService.getBeerById(beerObj.beerId)
                         .then(function(response) {
-                            notifs[beerObj.key].beer = response.name;
-                            return notifs;
+                            $timeout(function() {
+                                notifs[beerObj.key].beer = response.name;
+                                return notifs;
+                            }, 100);
                         });
                 }
             });

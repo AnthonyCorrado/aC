@@ -1,9 +1,8 @@
 angular.module('PatronService', [])
 
     .factory('PatronService', function($q, configApi) {
-        console.log(configApi);
 
-        var url = configApi.firebase.domain,
+        var url = configApi.api.firebase.domain,
             ref = new Firebase(url);
             barBase = ref.child("/bars/0");
             patronRef = barBase.child("/patrons");

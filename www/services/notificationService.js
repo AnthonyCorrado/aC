@@ -2,7 +2,7 @@ angular.module('NotificationService', [])
 
     .factory('NotificationService', function($q, HelperService, BeerService, configApi) {
 
-        var url = configApi.firebase.domain,
+        var url = configApi.api.firebase.domain,
             ref = new Firebase(url),
             barBase = ref.child("/bars/0"),
             notifRef = barBase.child("/notifications");

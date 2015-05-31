@@ -1,8 +1,8 @@
 angular.module('HomeController', [])
 
-.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeerService', 'PatronService', 'NotificationService', 'configApi', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, BeerService, PatronService, NotificationService, configApi) {
+.controller('HomeController', ['$rootScope', '$scope', '$firebase', '$ionicModal', 'BeerImageService', 'BeerService', 'PatronService', 'NotificationService', 'configApi', 'Mandrill', function($rootScope, $scope, $firebase, $ionicModal, BeerImageService, BeerService, PatronService, NotificationService, configApi, Mandrill) {
 
-    var url = configApi.firebase.domain,
+    var url = configApi.api.firebase.domain,
         baseRef = new Firebase(url),
         barBase = baseRef.child("/bars/0"),
         beerBase = barBase.child("/beers");
@@ -77,6 +77,10 @@ angular.module('HomeController', [])
 
     $scope.addNotification = function() {
 
+        // Mandrill.errorMsg(200)
+        //     .then(function(data) {
+        //         console.log(data);
+        //     });
         $scope.hideMenu = true;
         $ionicModal.fromTemplateUrl('views/partials/notifications-form.html', {
             scope: $scope,

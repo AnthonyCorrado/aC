@@ -8,8 +8,4 @@ angular.module('BeerController', [])
             $scope.beers = data;
         });
 
-    // $timeout(function() {
-    //     $scope.floatedLeft = "floated-left";
-    // }, 100);
-
 }]);

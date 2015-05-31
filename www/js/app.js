@@ -16,7 +16,8 @@ var aleChimp = angular.module('aleChimp', ['ionic',
     'PatronService',
     'NotificationService',
     'HelperService',
-    'checklist-model'
+    'checklist-model',
+    'MandrillService'
 ])
 
 .run(function($ionicPlatform, $rootScope, $location, $ionicHistory, $state) {
@@ -158,8 +159,7 @@ var aleChimp = angular.module('aleChimp', ['ionic',
         var $http = initInjector.get("$http");
 
         return $http.get("config/api.json").then(function(response) {
-            console.log(response.data.api);
-            aleChimp.constant("configApi", response.data.api);
+            aleChimp.constant("configApi", response.data);
         }, function(errorResponse) {
             console.log('request to get api object failed. ' + errorResponse);
         });
