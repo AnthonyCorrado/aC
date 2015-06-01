@@ -39,7 +39,6 @@ angular.module('MandrillService', [])
                         }
                     })
                     .success(function(data, status, headers, config){
-                        // log success
                     });
                 }
             };

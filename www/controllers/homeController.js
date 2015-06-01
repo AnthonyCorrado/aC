@@ -99,7 +99,18 @@ angular.module('HomeController', [])
     };
 
     $scope.createNotification = function(notify) {
-        NotificationService.createNotification(notify);
+    //     $scope.loadingIndicator = $ionicLoading.show({
+    //     content: 'Loading Data',
+    //     animation: 'fade-in',
+    //     showBackdrop: false,
+    //     maxWidth: 200,
+    //     showDelay: 500
+    // });
+
+        NotificationService.createNotification(notify)
+            .then(function(res) {
+                console.log(res);
+            });
         console.log(notify);
         $scope.closeModal();
     };

@@ -21,14 +21,17 @@ angular.module('NotificationService', [])
             var d = new Date();
             var n = d.getTime();
             notify.time = n;
-            BeerService.getBeerById(notify.beerId)
+            return BeerService.getBeerById(notify.beerId)
                 .then(function(response) {
-                    _.forEach(response.patrons, function(key) {
-                        // perhaps a promise here to notify user that patrons have been emailed
-                        EmailService.emailPatron(notify.beerId, notify.comment, key);
-                        notify.patrons.push(key);
-                    });
                     barBase.child('notifications').push(notify);
+                    return _.forEach(response.patrons, function(key) {
+                        notify.patrons.push(key);
+                        // perhaps a promise here to notify user that patrons have been emailed
+                        return EmailService.emailPatron(notify.beerId, notify.comment, key)
+                            .then(function(res) {
+                                // console.log(res);
+                            });
+                    });
                 });
         };
 
