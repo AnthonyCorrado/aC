@@ -1,6 +1,6 @@
 ## aleC (secret working title...or is it??? Spoiler: it is)
 
-A notification service used by bars to spread the joy of new or returning microbrews!
+A notification service used by bars to spread the joy of new or returning microbrews! Currently, only deployable on Android devices.
 
 ## Why and How
 
