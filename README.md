@@ -1,7 +1,6 @@
-aC (secret working title...or is it???)
-=============
+## aC (secret working title...or is it???)
 
-## A notification service used by bars to spread the joy of new or returning microbrews!
+A notification service used by bars to spread the joy of new or returning microbrews!
 
 ## Why and How
 
